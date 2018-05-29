@@ -1,9 +1,9 @@
 # github_stat
 
-Download repos list
+Download repos list of a GitHub organization using [Github API](https://developer.github.com/v3/repos/#list-organization-repositories)
 ```
-https://api.github.com/orgs/NAL-i5K/repos
 # save it as a file named 'repos' and put in the github_stat/ directory.
+curl https://api.github.com/orgs/NAL-i5K/repos > repos
 ```
 
 
