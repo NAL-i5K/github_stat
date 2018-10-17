@@ -20,15 +20,18 @@ def _read_git_log(repo_name):
                         result.append(i)
                 cc, fc, ic, dc = (0, 0, 0, 0)
             else:
-                l = line.split(",")
-                cc += 1
-                for e in l:
-                    if "changed" in e:
-                        fc += int(e.split(" ")[0])
-                    elif "insertion" in e:
-                        ic += int(e.split("insertion")[0])
-                    elif "deletion" in e:
-                        dc += int(e.split("deletion")[0])
+                try:
+                    l = line.split(",")
+                    cc += 1
+                    for e in l:
+                        if "changed" in e:
+                            fc += int(e.split(" ")[0])
+                        elif "insertion" in e:
+                            ic += int(e.split("insertion")[0])
+                        elif "deletion" in e:
+                            dc += int(e.split("deletion")[0])
+                except:
+                    print("line from stat.txt is not properly formatted:\n",line)
     return result
 
 
