@@ -13,30 +13,28 @@ def _read_git_log(repo_name):
     with open(file_name, 'r') as f:
         for line in f:
             line = line.strip()
-            if "===" in line:
-                num = line.split(" ")[1]
-                if num != "0":
-                    for i in [str(cc), str(fc), str(ic), str(dc)]:
-                        result.append(i)
-                cc, fc, ic, dc = (0, 0, 0, 0)
-            else:
-                try:
-                    l = line.split(",")
-                    cc += 1
-                    for e in l:
-                        if "changed" in e:
-                            fc += int(e.split(" ")[0])
-                        elif "insertion" in e:
-                            ic += int(e.split("insertion")[0])
-                        elif "deletion" in e:
-                            dc += int(e.split("deletion")[0])
-                except:
-                    print("line from stat.txt is not properly formatted:\n",line)
+#            cc, fc, ic, dc = (0, 0, 0, 0)
+            try:
+                l = line.split(",")
+                cc += 1
+                for e in l:
+                    if "changed" in e:
+                        fc += int(e.split(" ")[0])
+                    elif "insertion" in e:
+                        ic += int(e.split("insertion")[0])
+                    elif "deletion" in e:
+                        dc += int(e.split("deletion")[0])
+            except ValueError:
+                print("line from stat.txt is not properly formatted:\n",line)
+        for i in [str(cc), str(fc), str(ic), str(dc)]:
+            result.append(i)
+
     return result
 
 
 if __name__ == '__main__':
-    year = argv[1]
+    startdate = argv[1] #2017-1-31
+    enddate = argv[2] #2018-1-31
     t_result = []
     data = json.load(open('repos'))
     for d in data:
@@ -51,7 +49,7 @@ if __name__ == '__main__':
             os.chdir(repo_name)
             if not os.path.exists('stat.sh'):
                 subprocess.call(["ln", '-s', '../stat.sh'])
-            subprocess.call("./stat.sh " + year, shell=True)
+            subprocess.call("./stat.sh " + startdate + " " + enddate, shell=True)
             result = _read_git_log(repo_name)
             t_result.append(result)
             os.chdir('../')
