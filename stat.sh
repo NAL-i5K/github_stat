@@ -1,3 +1,4 @@
+#!/bin/bash
 if [ -f stat.txt ]; then
     rm stat.txt;
 fi

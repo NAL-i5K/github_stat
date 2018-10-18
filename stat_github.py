@@ -49,7 +49,7 @@ if __name__ == '__main__':
             os.chdir(repo_name)
             if not os.path.exists('stat.sh'):
                 subprocess.call(["ln", '-s', '../stat.sh'])
-            subprocess.call("./stat.sh " + startdate + " " + enddate, shell=True)
+            subprocess.call(["./stat.sh", startdate, enddate])
             result = _read_git_log(repo_name)
             t_result.append(result)
             os.chdir('../')
