@@ -9,8 +9,8 @@ curl https://api.github.com/orgs/NAL-i5K/repos > repos
 
 Usage: 
 ```
-python stat_github.py <year> 
-ex: python stat_github.py 2017
+python stat_github.py <startdate> <enddate> 
+ex: python stat_github.py 2017-10-1 2018-9-30
 ```
 
 Output format: (file name: repos.stat)
