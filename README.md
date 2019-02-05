@@ -15,7 +15,7 @@ ex: python stat_github.py 2017-10-1 2018-9-30
 
 Output format: (file name: repos.stat)
 ```
-repo1, <number of commit, number of file changed, number of insertion, number of deletion> X 12 (Jan, ... , Dec)
+repo1, <number of commit, number of file changed, number of insertion, number of deletion> 
 repo2, ...
 repo3, ...
 ```
